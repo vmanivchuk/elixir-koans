@@ -40,7 +40,7 @@ defmodule Execute do
 
   defp expand(error, module) do
     {file, line} =
-      System.stacktrace()
+      :erlang.get_stacktrace()
       |> Enum.drop_while(&(!in_koan?(&1, module)))
       |> List.first()
       |> extract_file_and_line
